@@ -1,0 +1,11 @@
+media/catalog/product/cache
+media/css
+media/css_secure
+media/js
+media/js_secure
+
+.DS_Store
+.phpstorm.meta.php
+.idea/
+
+composer/
