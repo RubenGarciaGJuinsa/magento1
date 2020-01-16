@@ -1,3 +1,20 @@
+# Never save database creditentials in your repo. Keep a dummy copy with a different name eg "local.xml.dev"
+app/etc/local.xml
+
+downloader
+# If you'd like to keep the downloader, use the following instead:
+# downloader/.cache
+# downloader/cache.cfg
+# downloader/connect.cfg
+
+# All of the var folders can be excluded.
+var/*
+!var/.htaccess
+
+# Remove generated files
+includes/*
+!includes/.htaccess
+
 media/catalog/product/cache
 media/css
 media/css_secure
