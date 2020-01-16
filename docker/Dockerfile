@@ -20,5 +20,7 @@ RUN docker-php-ext-install soap
 
 RUN docker-php-ext-install pdo_mysql
 
+RUN a2enmod rewrite
+
 FROM mariadb:10.4.11 AS db
 COPY migration/ /docker-entrypoint-initdb.d/
