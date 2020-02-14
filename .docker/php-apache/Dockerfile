@@ -19,6 +19,7 @@ RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install gd
+RUN docker-php-ext-install soap
 
 #Apache
 RUN a2enmod rewrite
@@ -27,8 +28,8 @@ RUN a2enmod rewrite
 # we need a user with the same UID/GID with host user
 # so when we execute CLI commands, all the host file's permissions and ownership remains intact
 # otherwise command from inside container will create root-owned files and directories
-ARG uid
-RUN useradd -G www-data,root -u $uid -d /home/devuser devuser
+
+RUN useradd -G www-data,root -u 1000 -d /home/devuser devuser
 RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
 

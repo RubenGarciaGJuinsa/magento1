@@ -28,6 +28,8 @@ docker-ssh:
 
 docker-clean-images:
 	docker rmi $(docker images | tail -n +2 | awk '$1 == "<none>" {print $'3'}')
+docker-clean-all:
+	 docker-compose -f .docker/docker-compose.yml down && docker rmi docker_jtech_magento1_db:latest docker_jtech_magento1_web:latest
 
 define HELP
 # Docker

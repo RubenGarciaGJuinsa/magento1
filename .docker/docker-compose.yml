@@ -1,19 +1,10 @@
 version: '3.4'
-x-environment:
-    &common-variables
-    MYSQL_ROOT_PASSWORD: password
-    MYSQL_USER: user
-    MYSQL_PASSWORD: password
-    MYSQL_DATABASE: db_name
-
 services:
     jtech_magento1_web:
         container_name: jtech_magento1_web
         build:
             context: php-apache
             target: web
-            args:
-                uid: 1000
         ports:
             - "80:80"
         volumes:
@@ -22,19 +13,28 @@ services:
             - jtech_magento1_db:db
         depends_on:
             - jtech_magento1_db
-        environment: *common-variables
-
+        environment:
+          - APACHE_RUN_USER=#1000
+          - APACHE_RUN_GROUP=#1000
+          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+          - MYSQL_USER=${MYSQL_USER}
+          - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+          - MYSQL_DATABASE=${MYSQL_DATABASE}
 
     jtech_magento1_db:
         container_name: jtech_magento1_db
         build:
             context: mysql
             target: db
-        environment: *common-variables
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
         ports:
             - "3306:3306"
         volumes:
-            - magento-db-data:/var/lib/mysql/data
+            - magento-db-data:/var/lib/mysql
 
 volumes:
     magento-db-data:
