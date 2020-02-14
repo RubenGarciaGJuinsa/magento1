@@ -26,3 +26,4 @@ media/js_secure
 .idea/
 
 composer/
+/var/

@@ -8,9 +8,12 @@ x-environment:
 
 services:
     jtech_magento1_web:
+        container_name: jtech_magento1_web
         build:
-            context: .
+            context: php-apache
             target: web
+            args:
+                uid: 1000
         ports:
             - "80:80"
         volumes:
@@ -20,9 +23,12 @@ services:
         depends_on:
             - jtech_magento1_db
         environment: *common-variables
+
+
     jtech_magento1_db:
+        container_name: jtech_magento1_db
         build:
-            context: .
+            context: mysql
             target: db
         environment: *common-variables
         ports:
