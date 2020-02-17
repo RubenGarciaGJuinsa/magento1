@@ -17,6 +17,9 @@ docker-down:
 docker-start:
 	docker-compose -f .docker/docker-compose.yml up -d
 
+docker-stop:
+	docker-compose -f .docker/docker-compose.yml stop
+
 docker-tests:
 	@docker exec -it kata-gilded-rose bash -c "./vendor/bin/phpunit"
 

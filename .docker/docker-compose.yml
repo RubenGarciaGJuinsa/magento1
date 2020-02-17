@@ -16,10 +16,6 @@ services:
         environment:
           - APACHE_RUN_USER=#1000
           - APACHE_RUN_GROUP=#1000
-          - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-          - MYSQL_USER=${MYSQL_USER}
-          - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-          - MYSQL_DATABASE=${MYSQL_DATABASE}
 
     jtech_magento1_db:
         container_name: jtech_magento1_db
